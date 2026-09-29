@@ -47,7 +47,7 @@ so we have to run it like:
 dotnet fallout publish --override-arch x64
 ```
 
-You are probably also wondering this becasue your building Froststrap for yourself, or to distribute
+You are probably also wondering this because your building Froststrap for yourself, or to distribute
 for a unmaintained distro, where the installers are useless. You would want to run
 
 ```sh
@@ -56,16 +56,16 @@ dotnet fallout publish --no-installers
 
 What is considered an "installer", is the NSIS installer for Windows, .pkg on macOS, and .rpm, .deb, .AppImage on Linux.
 
-There currently is no option to only output certain types, because implementing those flags and manging is going to make
+There currently is no option to only output certain types, because implementing those flags and managing is going to make
 it harder to maintain the codebase for the build system.
 
 
 ### I want to just compile a specific Module
 
-If you are looking at this, jsut to know, this is specifically to build say one of the various Rust libraries, or just Froststrap C#.
+If you are looking at this, just to know, this is specifically to build say one of the various Rust libraries, or just Froststrap C#.
 
 
-You can usally do that by invoking the build system in the directory.
+You can usually do that by invoking the build system in the directory.
 
 An example for a Rust lib module is
 
@@ -94,7 +94,7 @@ cd Froststrap
 dotnet publish
 ```
 
-Don't try to copy these ones directly though, becasue this depends on what you're obviously trying to do.
+Don't try to copy these ones directly though, because this depends on what you're obviously trying to do.
 
 ---
 
