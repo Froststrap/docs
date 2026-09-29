@@ -1,6 +1,6 @@
 {
   "label": "Building from source",
-  "position": 4,
+  "position": 3,
   "link": {
     "type": "generated-index",
     "description": "Building Froststrap from source."
