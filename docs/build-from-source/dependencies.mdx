@@ -1,0 +1,39 @@
+---
+sidebar_position: 1
+---
+
+# Dependencies
+
+The certain dependencies needed to build Froststrap.
+
+## Nix
+
+It is going to be way easier if you're on a Linux, or macOS
+to just use nix, as you tick all dependencies needed by just running:
+
+
+```sh
+nix develop
+```
+
+otherwise if not able to or don't want to use Nix, continue reading.
+
+## macOS Specific
+
+- Xcode - You need a toolchain which supports dispatching and running Xcode projects.
+- Xcode Command Line Tools
+
+## Windows Specific
+
+- NSIS (need to add the NSIS compiler to PATH env, which can be found via searching "Edit System Environment Variables")
+
+## All other dependents
+
+- Rust compiler (Rust 2024 support, and better managed with rustup)
+- .NET 10 SDK
+- Fallout dotnet tool
+- Git - Used in Fallout ochestration to publish and determine the version via Git tags
+
+
+Make sure you have all these dependencies, and if so you can go onto next section, which is
+about the commands to use.

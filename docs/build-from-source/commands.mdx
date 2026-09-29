@@ -1,0 +1,101 @@
+---
+sidebar_position: 2
+---
+
+# Commands
+
+Commands which can be run for different operations
+
+## Clearing artifacts
+
+There are multiple commands for these.
+
+```sh
+dotnet fallout clean
+```
+cleans out everything managed by fallout (no-check, complete wipe of .build dir in root of repo)
+
+
+```sh
+dotnet clean
+```
+built in command which will wipe out majority of dotnet junk, rather that be
+`bin/` or `obj/` directories
+
+```sh
+cargo clean
+```
+build in command which will wipe out `target/` directory, which is a meta garbage folder
+with the Cargo build system for Rust.
+
+## Publish
+
+The concept "Publish" is ainly just a Dotnet-ism, and its probably the function you are
+looking for. It will make the binaries, and ready to publish online.
+
+This is orchestrated through Fallout, which is a way to make C# code be expressed
+for a build system, making versatility a main perk.
+
+```sh
+dotnet fallout publish
+```
+
+you also have different options, for example our CI for macOS intel, is actually a aarch64 machine,
+so we have to run it like:
+
+```sh
+dotnet fallout publish --override-arch x64
+```
+
+You are probably also wondering this becasue your building Froststrap for yourself, or to distribute
+for a unmaintained distro, where the installers are useless. You would want to run
+
+```sh
+dotnet fallout publish --no-installers
+```
+
+What is considered an "installer", is the NSIS installer for Windows, .pkg on macOS, and .rpm, .deb, .AppImage on Linux.
+
+There currently is no option to only output certain types, because implementing those flags and manging is going to make
+it harder to maintain the codebase for the build system.
+
+
+### I want to just compile a specific Module
+
+If you are looking at this, jsut to know, this is specifically to build say one of the various Rust libraries, or just Froststrap C#.
+
+
+You can usally do that by invoking the build system in the directory.
+
+An example for a Rust lib module is
+
+```sh
+cd backend
+cargo b -r -p virtualdisplay
+```
+
+OR
+
+```sh
+cd backend/virtualdisplay
+cargo b -r
+```
+
+And for C#
+
+```sh
+dotnet publish --project Froststrap
+```
+
+OR
+
+```sh
+cd Froststrap
+dotnet publish
+```
+
+Don't try to copy these ones directly though, becasue this depends on what you're obviously trying to do.
+
+---
+
+Next section is how the file structure on how the Fallout build system will output your stuff.
