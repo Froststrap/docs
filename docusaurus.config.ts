@@ -78,8 +78,9 @@ const config: Config = {
         },
         {
           href: 'https://github.com/Froststrap/Froststrap',
-          label: 'GitHub',
+          'aria-label': 'GitHub repository',
           position: 'right',
+          className: 'header-github-link',
         },
       ],
     },
