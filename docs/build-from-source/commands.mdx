@@ -11,9 +11,9 @@ Commands which can be run for different operations
 There are multiple commands for these.
 
 ```sh
-dotnet fallout clean
+cargo xtask clean
 ```
-cleans out everything managed by fallout (no-check, complete wipe of .build dir in root of repo)
+cleans out everything managed by xtask (no-check, complete wipe of .build dir in root of repo)
 
 
 ```sh
@@ -33,25 +33,25 @@ with the Cargo build system for Rust.
 The concept "Publish" is ainly just a Dotnet-ism, and its probably the function you are
 looking for. It will make the binaries, and ready to publish online.
 
-This is orchestrated through Fallout, which is a way to make C# code be expressed
-for a build system, making versatility a main perk.
+This is orchestrated through xtask, which is the Rust way of build scripts via a programming language
+making versatility a main perk.
 
 ```sh
-dotnet fallout publish
+cargo xtask publish
 ```
 
 you also have different options, for example our CI for macOS intel, is actually a aarch64 machine,
 so we have to run it like:
 
 ```sh
-dotnet fallout publish --override-arch x64
+cargo xtask publish --override-arch x64
 ```
 
 You are probably also wondering this because your building Froststrap for yourself, or to distribute
 for a unmaintained distro, where the installers are useless. You would want to run
 
 ```sh
-dotnet fallout publish --no-installers
+cargo xtask publish --no-installers
 ```
 
 What is considered an "installer", is the NSIS installer for Windows, .pkg on macOS, and .rpm, .deb, .AppImage on Linux.
@@ -98,4 +98,4 @@ Don't try to copy these ones directly though, because this depends on what you'r
 
 ---
 
-Next section is how the file structure on how the Fallout build system will output your stuff.
+Next section is how the file structure on how our build system will output your stuff.

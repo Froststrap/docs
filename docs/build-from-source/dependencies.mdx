@@ -18,21 +18,16 @@ nix develop
 
 otherwise if not able to or don't want to use Nix, continue reading.
 
-## macOS Specific
+## Linux Dependencies
 
-- Xcode - You need a toolchain which supports dispatching and running Xcode projects.
-- Xcode Command Line Tools
+- dbus/libdbus
 
-## Windows Specific
+## Dependents
 
-- NSIS (need to add the NSIS compiler to PATH env, which can be found via searching "Edit System Environment Variables")
-
-## All other dependents
-
-- Rust compiler (Rust 2024 support, and better managed with rustup)
 - .NET 10 SDK
-- Fallout dotnet tool
-- Git - Used in Fallout ochestration to publish and determine the version via Git tags
+- Rust compiler (Rust 2024 **Nightly** support, is easier to use managed with rustup)
+- Git - Used in `xtask` publish and determine the version via Git tags
+- Velopack dotnet tool
 
 
 Make sure you have all these dependencies, and if so you can go onto next section, which is
