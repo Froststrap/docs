@@ -1,23 +1,21 @@
-<script lang="ts">
+<script>
 	import { page } from '$app/state';
-	import { DISCORD_URL, GITHUB_URL } from '../site';
+	import { DISCORD_URL, GITHUB_URL } from '../site.svelte';
 	import DiscordIcon from '../icons/DiscordIcon.svelte';
 	import GithubIcon from '../icons/GithubIcon.svelte';
 	import MenuIcon from '../icons/MenuIcon.svelte';
 	import Logo from './Logo.svelte';
 	import ThemeToggle from './ThemeToggle.svelte';
 
-	type NavLink = { label: string; href: string; match: string };
-
-	const links: NavLink[] = [
+	const links = [
 		{ label: 'Docs', href: '/docs/welcome', match: '/docs' },
 		{ label: 'Blog', href: '/blog', match: '/blog' }
 	];
 
 	let menuOpen = $state(false);
-	let menuButton = $state<HTMLButtonElement>();
+	let menuButton = $state();
 
-	const isActive = (match: string) =>
+	const isActive = (match) =>
 		page.url.pathname === match || page.url.pathname.startsWith(`${match}/`);
 
 	function toggleMenu() {
@@ -38,7 +36,7 @@
 			return;
 		}
 
-		const closeOnEscape = (event: KeyboardEvent) => {
+		const closeOnEscape = (event) => {
 			if (event.key === 'Escape') {
 				dismissMenu();
 			}

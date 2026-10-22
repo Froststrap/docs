@@ -1,12 +1,5 @@
-<script lang="ts">
-	import type { PageLink } from '../../content/types';
-
-	interface Props {
-		prev: PageLink | null;
-		next: PageLink | null;
-	}
-
-	let { prev, next }: Props = $props();
+<script>
+	let { prev, next } = $props();
 </script>
 
 {#if prev || next}

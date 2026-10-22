@@ -1,11 +1,9 @@
 import { error } from '@sveltejs/kit';
-import { getBlogTags, getPostsByTag, getTag } from '../../../../lib/content/blog';
+import { getPostsByTag, getTag } from '../../../../lib/content/blog.svelte';
 
 export const prerender = false;
 
-export const entries = () => getBlogTags().map((tag) => ({ tag: tag.id }));
-
-export function load({ params }: { params: { tag: string } }) {
+export function load({ params }) {
 	const tag = getTag(params.tag);
 	const posts = getPostsByTag(params.tag);
 

@@ -1,26 +1,14 @@
-<script lang="ts">
+<script>
 	import { page } from '$app/state';
-	import type { SidebarNode } from '../../content/types';
 	import ChevronIcon from '../../icons/ChevronIcon.svelte';
 
-	interface Props {
-		tree: SidebarNode[];
-		onNavigate?: () => void;
-	}
-
-	let { tree, onNavigate }: Props = $props();
-	let collapsed = $state<Record<string, boolean>>({});
-
-	interface Row {
-		node: SidebarNode;
-		depth: number;
-		visible: boolean;
-	}
+	let { tree, onNavigate = undefined } = $props();
+	let collapsed = $state({});
 
 	const rows = $derived.by(() => {
-		const output: Row[] = [];
+		const output = [];
 
-		const walk = (nodes: SidebarNode[], depth: number, parentVisible: boolean) => {
+		const walk = (nodes, depth, parentVisible) => {
 			for (const node of nodes) {
 				output.push({ node, depth, visible: parentVisible });
 
@@ -35,15 +23,15 @@
 		return output;
 	});
 
-	function isActive(href: string) {
+	function isActive(href) {
 		return page.url.pathname === href || page.url.pathname.startsWith(`${href}/`);
 	}
 
-	function isCurrent(href: string) {
+	function isCurrent(href) {
 		return page.url.pathname === href;
 	}
 
-	function toggle(id: string) {
+	function toggle(id) {
 		collapsed = { ...collapsed, [id]: !collapsed[id] };
 	}
 </script>

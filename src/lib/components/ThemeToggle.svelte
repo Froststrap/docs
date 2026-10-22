@@ -1,12 +1,10 @@
-<script lang="ts">
+<script>
 	import { onMount } from 'svelte';
 	import MoonIcon from '../icons/MoonIcon.svelte';
 	import SunIcon from '../icons/SunIcon.svelte';
 
-	type Theme = 'light' | 'dark';
-
-	let theme = $state<Theme>('light');
-	let colorSchemeTimer: ReturnType<typeof setTimeout> | undefined;
+	let theme = $state('light');
+	let colorSchemeTimer;
 
 	onMount(() => {
 		theme = document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light';

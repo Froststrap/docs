@@ -1,10 +1,9 @@
-<script lang="ts">
+<script>
 	import './layout.css';
-	import type { LayoutProps } from './$types';
 	import Footer from '../lib/components/Footer.svelte';
 	import Header from '../lib/components/Header.svelte';
 
-	let { children }: LayoutProps = $props();
+	let { children } = $props();
 </script>
 
 <svelte:head>

@@ -25,6 +25,12 @@ export default defineConfig(
 		}
 	},
 	{
+		files: ['src/lib/content/**/*.svelte'],
+		rules: {
+			'svelte/prefer-svelte-reactivity': 'off'
+		}
+	},
+	{
 		files: ['**/*.svelte', '**/*.svelte.ts', '**/*.svelte.js'],
 		languageOptions: {
 			parserOptions: {

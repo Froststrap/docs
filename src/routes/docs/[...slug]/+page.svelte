@@ -1,11 +1,10 @@
-<script lang="ts">
-	import type { PageProps } from './$types';
+<script>
 	import Breadcrumbs from '../../../lib/components/docs/Breadcrumbs.svelte';
 	import DocsPager from '../../../lib/components/docs/DocsPager.svelte';
 	import DocsToc from '../../../lib/components/docs/DocsToc.svelte';
-	import { getDocComponent } from '../../../lib/content/doc-components';
+	import { getDocComponent } from '../../../lib/content/docs.svelte';
 
-	let { data }: PageProps = $props();
+	let { data } = $props();
 </script>
 
 <svelte:head>

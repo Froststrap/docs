@@ -1,7 +1,8 @@
-<script lang="ts">
-	import type { PageProps } from './$types';
+<script>
+	import { getBlogPosts, getBlogTags } from '../../lib/content/blog.svelte';
 
-	let { data }: PageProps = $props();
+	const posts = getBlogPosts();
+	const tags = getBlogTags();
 </script>
 
 <svelte:head>
@@ -26,11 +27,11 @@
 			</p>
 		</header>
 
-		{#if data.posts.length === 0}
+		{#if posts.length === 0}
 			<p class="mt-10 text-body text-muted-foreground">No posts yet. Check back soon.</p>
 		{:else}
 			<div class="mt-10 flex flex-col gap-4">
-				{#each data.posts as post (post.slug)}
+				{#each posts as post (post.slug)}
 					<article
 						class="rounded-lg border border-border bg-surface px-5 py-5 transition-colors hover:border-accent/50 sm:px-6 sm:py-6"
 					>
@@ -72,7 +73,7 @@
 			</div>
 		{/if}
 
-		{#if data.tags.length > 0}
+		{#if tags.length > 0}
 			<div class="mt-10 border-t border-border pt-6">
 				<a
 					class="text-small font-medium text-muted-foreground transition-colors hover:text-accent"

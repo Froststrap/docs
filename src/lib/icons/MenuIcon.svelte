@@ -1,5 +1,5 @@
-<script lang="ts">
-	let { open = false, class: className = 'size-5' }: { open?: boolean; class?: string } = $props();
+<script>
+	let { open = false, class: className = 'size-5' } = $props();
 </script>
 
 <svg

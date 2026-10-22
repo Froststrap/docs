@@ -1,8 +1,5 @@
-<script lang="ts">
-	let {
-		class: className = 'size-4',
-		direction = 'down'
-	}: { class?: string; direction?: 'down' | 'right' } = $props();
+<script>
+	let { class: className = 'size-4', direction = 'down' } = $props();
 </script>
 
 <svg

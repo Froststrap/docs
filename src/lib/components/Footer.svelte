@@ -1,5 +1,5 @@
-<script lang="ts">
-	import { DISCORD_URL, GITHUB_ORG_URL, GITHUB_URL, LICENSE_URL } from '../site';
+<script>
+	import { DISCORD_URL, GITHUB_ORG_URL, GITHUB_URL, LICENSE_URL } from '../site.svelte';
 
 	const year = new Date().getFullYear();
 </script>

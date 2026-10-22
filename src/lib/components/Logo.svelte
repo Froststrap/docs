@@ -1,9 +1,5 @@
-<script lang="ts">
-	let {
-		class: className = '',
-		width = 144,
-		height = 144
-	}: { class?: string; width?: number; height?: number } = $props();
+<script>
+	let { class: className = '', width = 144, height = 144 } = $props();
 </script>
 
 <img

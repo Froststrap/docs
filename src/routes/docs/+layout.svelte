@@ -1,10 +1,11 @@
-<script lang="ts">
-	import type { LayoutProps } from './$types';
+<script>
 	import DocsSidebar from '../../lib/components/docs/DocsSidebar.svelte';
 	import MenuIcon from '../../lib/icons/MenuIcon.svelte';
+	import { getSidebarTree } from '../../lib/content/docs.svelte';
 
-	let { data, children }: LayoutProps = $props();
+	let { children } = $props();
 	let sidebarOpen = $state(false);
+	const tree = getSidebarTree();
 </script>
 
 <main class="mx-auto w-full max-w-[1440px] px-8 pt-6 pb-16 sm:px-12 sm:pt-10">
@@ -12,7 +13,7 @@
 		<aside
 			class="sticky top-[4.5625rem] hidden max-h-[calc(100dvh-4.5625rem)] overflow-y-auto py-6 select-none lg:block"
 		>
-			<DocsSidebar tree={data.tree} />
+			<DocsSidebar {tree} />
 		</aside>
 
 		<div class="min-w-0">
@@ -36,7 +37,7 @@
 						id="docs-mobile-nav"
 						class="mt-2 rounded-md border border-border bg-surface px-4 py-4"
 					>
-						<DocsSidebar tree={data.tree} onNavigate={() => (sidebarOpen = false)} />
+						<DocsSidebar {tree} onNavigate={() => (sidebarOpen = false)} />
 					</div>
 				{/if}
 			</div>

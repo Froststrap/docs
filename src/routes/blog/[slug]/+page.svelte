@@ -1,10 +1,9 @@
-<script lang="ts">
-	import type { PageProps } from './$types';
+<script>
 	import DocsPager from '../../../lib/components/docs/DocsPager.svelte';
 	import DocsToc from '../../../lib/components/docs/DocsToc.svelte';
-	import { getBlogComponent } from '../../../lib/content/blog-components';
+	import { getBlogComponent } from '../../../lib/content/blog.svelte';
 
-	let { data }: PageProps = $props();
+	let { data } = $props();
 	const Post = $derived(getBlogComponent(data.file));
 </script>
 

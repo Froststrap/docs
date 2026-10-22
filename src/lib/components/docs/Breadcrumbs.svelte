@@ -1,11 +1,5 @@
-<script lang="ts">
-	import type { Breadcrumb } from '../../content/types';
-
-	interface Props {
-		items: Breadcrumb[];
-	}
-
-	let { items }: Props = $props();
+<script>
+	let { items } = $props();
 </script>
 
 <nav aria-label="Breadcrumb" class="text-small">

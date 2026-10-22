@@ -1,11 +1,5 @@
-<script lang="ts">
-	import type { TocItem } from '../../content/types';
-
-	interface Props {
-		items: TocItem[];
-	}
-
-	let { items }: Props = $props();
+<script>
+	let { items } = $props();
 	let activeId = $state('');
 
 	$effect(() => {
