@@ -1,43 +1,52 @@
-# Website
+# Froststrap Docs
 
-This website is built using [Docusaurus](https://docusaurus.io/), a modern static website generator.
+Documentation site for [Froststrap](https://froststrap.xyz), built with SvelteKit and MDX (mdsvex).
 
-## Installation
-
-```bash
-npm install
-```
-
-**Note**: feel free to use the package manager of your choice.
-
-## Local Development
+## Development
 
 ```bash
-npm run start
+pnpm install
+pnpm dev
 ```
 
-This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
+The site runs at `http://localhost:5173`.
+
+## Content
+
+- Docs live in `src/content/docs`.
+- Blog posts live in `src/content/blog`.
+- Doc pages are MDX files with optional frontmatter:
+
+```mdx
+---
+sidebar_position: 1
+---
+
+# Page title
+
+## Section
+
+Section content.
+```
+
+The docs sidebar is generated automatically from the folder structure and `sidebar_position`
+values. Folders can include a Docusaurus-style `_category_.json` file to control the section
+label, position, description, and category index page.
+
+Headings get stable IDs automatically, and each heading gets a `#` anchor link on hover.
 
 ## Build
 
 ```bash
-npm run build
+pnpm run build
+pnpm run preview
 ```
 
-This command generates static content into the `build` directory and can be served using any static contents hosting service.
+The production build uses the Cloudflare adapter and outputs to `.svelte-kit/cloudflare`.
 
-## Deployment
-
-Using SSH:
+## Checks
 
 ```bash
-USE_SSH=true npm run deploy
+pnpm run check
+pnpm run lint
 ```
-
-Not using SSH:
-
-```bash
-GIT_USER=<Your GitHub username> npm run deploy
-```
-
-If you are using GitHub Pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.

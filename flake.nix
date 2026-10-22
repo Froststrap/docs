@@ -1,5 +1,5 @@
 {
-  description = "Site devenv";
+  description = "docs.froststrap.xyz devenv";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -14,11 +14,11 @@
       {
         devShells.default = pkgs.mkShell {
           packages = with pkgs; [
-            nodejs_24
-            pnpm
+            nodejs_22
+            bun
+            cloudflared
 
             typescript-language-server
-            typos
             nil
             prettier
           ];
