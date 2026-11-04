@@ -1,0 +1,26 @@
+---
+sidebar_position: 1
+---
+
+# Account Access
+
+Froststrap can connect to your Roblox account to enable account-related features.
+Account access is **disabled by default** and is only enabled if you choose to sign in.
+
+## What Froststrap can access
+
+When account access is enabled, Froststrap may use the following Roblox APIs:
+
+| API                                                                                        | Purpose                                                                                   |
+| ------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------- |
+| [`users.roblox.com/v1/users/authenticated`](https://users.roblox.com/v1/users/authenticated) | Retrieves basic information about the authenticated user, such as their username.         |
+| [`clientsettings.roblox.com/v2/user-channel`](https://clientsettings.roblox.com/v2/user-channel) | Manages the user's channel enrollments.                                                   |
+| [`games.roblox.com/v1/games?universeIds=[ids]`](https://games.roblox.com/v1/games?universeIds=%5Bids%5D) | Retrieves restricted or private universe data for Discord Rich Presence.                  |
+
+## What Froststrap will not access
+
+Froststrap does not access your Robux or experiences.
+
+## Changes to this list
+
+This list may change at any time. Any updates will be announced in our Discord server.
