@@ -1,0 +1,143 @@
+---
+title: Building Froststrap
+sidebar_position: 1
+---
+
+# Building Froststrap
+
+This page covers everything about building Froststrap from source.
+
+## Dependencies
+
+### Using Nix (recommended)
+
+If you're on Linux or macOS, the easiest route is Nix. It provides every dependency in one step:
+
+```sh
+nix develop
+```
+
+If you can't or don't want to use Nix, install the dependencies below manually.
+
+### Required tools
+
+- **.NET 10 SDK**
+- **Rust compiler**: Rust 2024 edition with **Nightly** support. This is easiest to manage with `rustup`.
+- **Git**: `xtask publish` uses it to determine the version from Git tags.
+- **Velopack dotnet tool**
+
+### Linux
+
+On Linux you also need:
+
+- `dbus` / `libdbus`
+
+## Commands
+
+Once your dependencies are in place, these are the commands you'll use day to day.
+
+### Clearing artifacts
+
+There are three commands, depending on how much you want to wipe.
+
+```sh
+cargo xtask clean
+```
+
+Cleans everything managed by `xtask`. This does no checking and completely wipes the `.build` directory at the root of the repo.
+
+```sh
+dotnet clean
+```
+
+The built-in .NET command. It removes most .NET leftovers, such as `bin/` and `obj/` directories.
+
+```sh
+cargo clean
+```
+
+The built-in Cargo command. It removes the `target/` directory, which is where Cargo puts its build artifacts for Rust.
+
+### Publishing
+
+"Publish" is mainly a .NET term, and it's most likely what you're looking for. It produces the binaries and gets them ready to distribute.
+
+Publishing is orchestrated through `xtask`, the Rust convention for writing build scripts in a full programming language, which gives us plenty of flexibility.
+
+```sh
+cargo xtask publish
+```
+
+#### Overriding the architecture
+
+You can pass options to change the behavior. For example, our macOS Intel CI job actually runs on an aarch64 machine, so it has to be run like this:
+
+```sh
+cargo xtask publish --override-arch x64
+```
+
+#### Skipping installers
+
+If you're building Froststrap for yourself, or packaging it for an unmaintained distro where the installers are useless, you'll want:
+
+```sh
+cargo xtask publish --no-installers
+```
+
+An "installer" here means:
+
+| Platform | Installer formats          |
+| -------- | -------------------------- |
+| Windows  | Velopack                   |
+| macOS    | Velopack                   |
+| Linux    | `.rpm`, `.deb`, Velopack   |
+
+> There is currently no option to output only specific types. Implementing and managing those flags would make the build system harder to maintain.
+
+### Building a single module
+
+If you only want to build one piece, such as one of the Rust libraries or just the Froststrap C# project, you can invoke the relevant build tool directly instead of going through `xtask`.
+
+For a Rust library module, either of these works:
+
+```sh
+cd backend
+cargo b -r -p virtualdisplay
+```
+
+```sh
+cd backend/virtualdisplay
+cargo b -r
+```
+
+For the C# project:
+
+```sh
+dotnet publish --project Froststrap
+```
+
+```sh
+cd Froststrap
+dotnet publish
+```
+
+> Don't copy these verbatim. The right command depends on what you're trying to do.
+
+## File outputs
+
+The build system writes everything under `.build/` at the root of the repo. Here's what each directory is for.
+
+### `.build/publish`
+
+Output of the `dotnet publish` wrapper.
+
+### `.build/build`
+
+Same idea as `.build/publish`, but for the output of `dotnet msbuild`.
+
+### `.build/dist`
+
+The distributable output, plus intermediate files used to produce it:
+
+- **macOS**: the unsigned `.app`.
+- **Linux**: an app manifest directory, used by the tools that build the `.rpm`, `.deb`, and `.AppImage`.
